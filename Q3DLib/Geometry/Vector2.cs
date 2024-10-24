@@ -1,4 +1,4 @@
-﻿namespace Q3DLib.Measurement
+﻿namespace Q3DLib.Geometry
 {
     public readonly struct Vector2(float x, float y)
     {
@@ -15,6 +15,7 @@
 
         public float Length => MathF.Sqrt((X * X) + (Y * Y));
         public Vector2 Normalized => Normalize();
+        public bool Valid => !float.IsNaN(X) && !float.IsNaN(Y);
         #endregion
 
         #region Operators
