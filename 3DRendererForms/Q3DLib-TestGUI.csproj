@@ -9,4 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Q3DLib\Q3DLib.csproj" />
+  </ItemGroup>
+
 </Project>
