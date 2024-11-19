@@ -14,7 +14,7 @@ namespace Q3DLib
         public int RenderDistance { get; private set; } = renderDistance;
         public float ClipPlane { get; private set; } = clipPlane;
 
-        private float[,] zBuffer;
+        private float[,] zBuffer = null!;
 
         public void Render(Graphics g, Shape3D shape, int width, int height, RenderMode renderMode)
         {
@@ -49,7 +49,8 @@ namespace Q3DLib
                     if (renderMode == RenderMode.Wireframe)
                         RenderWireFrame(g, vertex1, vertex2, vertex3);
                     else if (renderMode == RenderMode.Rasterize)
-                        RasterizeTriangle(g, vertex1, vertex2, vertex3);
+                        throw new NotSupportedException("Rasterization is not yet supported.");
+                            //RasterizeTriangle(g, vertex1, vertex2, vertex3);
                 }
                 catch (OverflowException)
                 {
@@ -67,7 +68,7 @@ namespace Q3DLib
             g.DrawLine(pen, vertex3.X, vertex3.Y, vertex1.X, vertex1.Y);
         }
 
-        private void RasterizeTriangle(Graphics g, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3)
+        /*private void RasterizeTriangle(Graphics g, Vector3 vertex1, Vector3 vertex2, Vector3 vertex3)
         {
             int minX = (int)MathF.Min(MathF.Min(vertex1.X, vertex2.X), vertex3.X);
             int maxX = (int)MathF.Max(MathF.Max(vertex1.X, vertex2.X), vertex3.X);
@@ -108,7 +109,7 @@ namespace Q3DLib
             float w3 = 1 - w1 - w2;
 
             return new Vector3(w1, w2, w3);
-        }
+        }*/
 
 
         public Vector3 Project(Vector3 vector, int width, int height)
